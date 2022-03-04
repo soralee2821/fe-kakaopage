@@ -96,7 +96,7 @@ export function fetchData(dataName) {
   return fetch(DATA_URL)
   .then((response) => {
     if (!response.ok) {
-      throw new Error(response.statusText);
+      return response.text().then(text => {throw new Error(text)});
     }
     return response.json();
   })
